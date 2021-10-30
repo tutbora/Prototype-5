@@ -10,7 +10,6 @@ public class Target : MonoBehaviour
     private float maxTorgue = 10;
     private float xRange = 4;
     private float ySpawnPos = 6;
-
     // Start is called before the first frame update
     void Start()
     {
