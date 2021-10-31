@@ -3,21 +3,25 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     private Rigidbody targetRb;
+    private GameManager gameManager;
     private float minSpeed = 12;
     private float maxSpeed = 16;
-    private float maxTorgue = 10;
+    private float maxTorque = 10;
     private float xRange = 4;
     private float ySpawnPos = 6;
-    //test Consulo0.5
+    public int pointValue;
+    public ParticleSystem explosionParticle;
+
     // Start is called before the first frame update
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(
-            RandomTorgue(maxTorgue),
-            RandomTorgue(maxTorgue),
-            RandomTorgue(maxTorgue),
+            RandomTorque(maxTorque),
+            RandomTorque(maxTorque),
+            RandomTorque(maxTorque),
             ForceMode.Impulse);
         transform.position = RandomSpawnPos();
     }
@@ -30,6 +34,8 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        gameManager.UpdateScore(pointValue);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,26 +45,26 @@ public class Target : MonoBehaviour
 
     Vector3 RandomForce()
     {
-        return Vector3.up * RandomTorgue(minSpeed, maxSpeed);
+        return Vector3.up * RandomTorque(minSpeed, maxSpeed);
     }
 
-    float RandomTorgue()
+    float RandomTorque()
     {
-        return Random.Range(-maxTorgue, maxTorgue);
+        return Random.Range(-maxTorque, maxTorque);
     }
 
-    float RandomTorgue(float between)
+    float RandomTorque(float between)
     {
         return Random.Range(-between, between);
     }
 
-    float RandomTorgue(float from, float to)
+    float RandomTorque(float from, float to)
     {
         return Random.Range(from, to);
     }
 
     Vector3 RandomSpawnPos()
     {
-        return new Vector3(RandomTorgue(xRange), -ySpawnPos);
+        return new Vector3(RandomTorque(xRange), -ySpawnPos);
     }
 }
