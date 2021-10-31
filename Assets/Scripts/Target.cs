@@ -21,11 +21,10 @@ public class Target : MonoBehaviour
             ForceMode.Impulse);
         transform.position = RandomSpawnPos();
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnMouseDown()
