@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
     private float maxTorgue = 10;
     private float xRange = 4;
     private float ySpawnPos = 6;
-    //test Consulo0.3
+    //test Consulo0.4
     // Start is called before the first frame update
     void Start()
     {
