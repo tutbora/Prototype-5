@@ -11,7 +11,7 @@ public class Target : MonoBehaviour
     private float ySpawnPos = 6;
     public int pointValue;
     public ParticleSystem explosionParticle;
-
+    //test consulo0.6
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,7 @@ public class Target : MonoBehaviour
             ForceMode.Impulse);
         transform.position = RandomSpawnPos();
     }
+
     // Update is called once per frame
     void Update()
     {
