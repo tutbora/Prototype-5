@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class Target : MonoBehaviour
-{
+public class Target : MonoBehaviour {
     private Rigidbody targetRb;
     private GameManager gameManager;
     private float minSpeed = 12;
@@ -13,28 +12,25 @@ public class Target : MonoBehaviour
     public ParticleSystem explosionParticle;
     //test consulo0.6
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         targetRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(
-            RandomTorque(maxTorque),
-            RandomTorque(maxTorque),
-            RandomTorque(maxTorque),
-            ForceMode.Impulse);
+                RandomTorque(maxTorque),
+                RandomTorque(maxTorque),
+                RandomTorque(maxTorque),
+                ForceMode.Impulse);
         transform.position = RandomSpawnPos();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
     }
 
-    private void OnMouseDown()
-    {
-        if(gameManager.isGameActive)
+    private void OnMouseDown() {
+        if (gameManager.isGameActive)
         {
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
@@ -42,8 +38,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         Destroy(gameObject);
         if (!gameObject.CompareTag("Bad"))
         {
@@ -51,28 +46,23 @@ public class Target : MonoBehaviour
         }
     }
 
-    Vector3 RandomForce()
-    {
+    Vector3 RandomForce() {
         return Vector3.up * RandomTorque(minSpeed, maxSpeed);
     }
 
-    float RandomTorque()
-    {
+    float RandomTorque() {
         return Random.Range(-maxTorque, maxTorque);
     }
 
-    float RandomTorque(float between)
-    {
+    float RandomTorque(float between) {
         return Random.Range(-between, between);
     }
 
-    float RandomTorque(float from, float to)
-    {
+    float RandomTorque(float from, float to) {
         return Random.Range(from, to);
     }
 
-    Vector3 RandomSpawnPos()
-    {
+    Vector3 RandomSpawnPos() {
         return new Vector3(RandomTorque(xRange), -ySpawnPos);
     }
 }
