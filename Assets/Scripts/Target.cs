@@ -10,7 +10,8 @@ public class Target : MonoBehaviour {
     private float ySpawnPos = 6;
     public int pointValue;
     public ParticleSystem explosionParticle;
-    //test consulo0.6
+
+    //test consulo0.7
     // Start is called before the first frame update
     void Start() {
         targetRb = GetComponent<Rigidbody>();
